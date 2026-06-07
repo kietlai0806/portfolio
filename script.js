@@ -27,6 +27,12 @@ window.addEventListener("scroll", updateScrollState, { passive: true });
 window.addEventListener("resize", updateScrollState);
 updateScrollState();
 
+window.addEventListener("load", () => {
+  const target = document.querySelector(window.location.hash);
+  if (!target) return;
+  window.setTimeout(() => target.scrollIntoView({ block: "start", behavior: "auto" }), 350);
+});
+
 menuButton.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", String(open));
